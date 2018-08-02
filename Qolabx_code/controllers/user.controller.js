@@ -25,6 +25,17 @@ module.exports.addusertype= function(req, res){
 
 /***create user account*****/
 module.exports.adduserccount= function(req, res){
+  
+    userAccount.forge({ email: req.body.email})
+    .fetch()
+    .then(function(admin){
+        if(admin){         
+            res.json({
+                type: false,
+                error: 'It looks like you have already registered email id'
+            });
+        }else{
+                
     new userAccount({
         user_type_id:data.user_type_id,
         email:data.email,
@@ -35,7 +46,7 @@ module.exports.adduserccount= function(req, res){
         contact:data.contact,
         user_image:req.file.filename
 
-    })
+   }) 
     .save()
     .then(function(user){
         res.json({
@@ -47,6 +58,8 @@ module.exports.adduserccount= function(req, res){
         console.log(err.stack);
         res.status(400).json({error: err.message});
     });
+}
+}) 
 };
 
 module.exports.applyjob=function(req,res)
@@ -160,3 +173,23 @@ module.exports.uploadFile1= function(req, res, next)
         }
     });
 };
+
+
+
+module.exports.listUser=function(req,res)
+{
+    userAccount.forge()
+               .fetchAll()
+               .then(function(user){
+                   res.json({
+                       type:true,
+                       data:user
+                   })
+               })
+               .catch(function(err){
+                   res.json({
+                       type:false,
+                       data:err
+                   })
+               })
+}

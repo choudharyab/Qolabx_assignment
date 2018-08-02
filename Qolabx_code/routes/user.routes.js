@@ -5,6 +5,11 @@ var userController = require('../controllers/user.controller');
 
 router.post('/apply_job',userController.applyjob);
 
+router.post('/addusertype',userController.addusertype);
+
+router.post('/adduserccount',userController.adduserccount,userController.uploadFile1);
+
+router.get('/listUser',userController.listUser);
 
 
 

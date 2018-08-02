@@ -73,7 +73,7 @@ module.exports.createjob=function(req,res)
 
 module.exports.listjob=function(req,res)
 {
-    JobPost.forge()
+    JobPost.Where(status,'active')
            .fetchAll({
                withRelated:['user','job_type','company']
            })
@@ -90,3 +90,28 @@ module.exports.listjob=function(req,res)
                 })
            })
 }
+
+module.exports.deletepost=function(req,res)
+{
+    JobPost.forge({id:req.params.id})
+           .fetch()
+           .then(function(jobpost){
+               if(jobpost)
+               {
+                   JobPost.save({status:'inactive'})
+                   .then(function(success){
+                        res.json({
+                            type:true,
+                            data:"Jobpost Deleted Successfully"
+                        })
+                   })
+               }
+           })
+           .catch(function(err){
+               res.json({
+                   type:false,
+                   data:err
+               })
+           })
+}
+

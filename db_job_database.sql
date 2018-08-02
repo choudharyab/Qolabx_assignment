@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 02, 2018 at 07:08 PM
+-- Generation Time: Aug 02, 2018 at 08:24 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -112,18 +112,19 @@ CREATE TABLE `job_post` (
   `company_id` int(11) NOT NULL,
   `created_date` varchar(120) NOT NULL,
   `job_description` varchar(500) NOT NULL,
-  `is_active` enum('active','inactive') DEFAULT NULL
+  `is_active` enum('active','inactive') DEFAULT NULL,
+  `status` enum('active','inactive') NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `job_post`
 --
 
-INSERT INTO `job_post` (`id`, `user_id`, `job_type_id`, `company_id`, `created_date`, `job_description`, `is_active`) VALUES
-(1, 0, 0, 0, '', '', 'inactive'),
-(2, 0, 0, 0, '', '', 'inactive'),
-(3, 1, 1, 1, '2018-08-02', 'This is it related jobs', 'inactive'),
-(4, 1, 1, 1, '2018-08-02', 'This is it related jobs', 'inactive');
+INSERT INTO `job_post` (`id`, `user_id`, `job_type_id`, `company_id`, `created_date`, `job_description`, `is_active`, `status`) VALUES
+(1, 0, 0, 0, '', '', 'inactive', 'active'),
+(2, 0, 0, 0, '', '', 'inactive', 'active'),
+(3, 1, 1, 1, '2018-08-02', 'This is it related jobs', 'inactive', 'active'),
+(4, 1, 1, 1, '2018-08-02', 'This is it related jobs', 'inactive', 'active');
 
 -- --------------------------------------------------------
 
