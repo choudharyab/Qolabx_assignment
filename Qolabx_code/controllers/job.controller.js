@@ -98,7 +98,7 @@ module.exports.deletepost=function(req,res)
            .then(function(jobpost){
                if(jobpost)
                {
-                   JobPost.save({status:'inactive'})
+                   jobpost.destroy();
                    .then(function(success){
                         res.json({
                             type:true,
