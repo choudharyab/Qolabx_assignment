@@ -1,0 +1,62 @@
+/*create job data*/
+{
+   "user_id":1,
+   "user_type_name":"Admin"
+   "job_type_id":1,
+   "company_id":1,
+   "created_date":"2018-08-02",
+   "job_description":"This is it related jobs",
+   "apply_date":"2018-08-30",
+   "skill_set_id":1,
+   "skill_level":"senority",
+   "street_address":"Advanced Building",
+   "city":"nagpur",
+   "state":"maharastra",
+   "country":"India"
+}
+
+/*create jobseeker data*/
+
+{
+  "user_id":2,
+  "first_name":"anup",
+  "last_name":"choudhary",
+  "experience":1,
+  "current_salary":3,
+  "expected_salary":5,
+  "certificate_degree_name":"B.E",
+  "Institute_university_name":"Nagpur University",
+  "starting_date":"2013-08-02",
+  "completion_date":"2017-05-31",
+  "percentage":"78",
+  "is_current_job":"yes",
+  "start_date":"2017-7-10",
+  "end_date":"2018-8-01",
+  "job_title":"software Engineering",
+  "job_location_city":"nagpur",
+  "description":"It based skills company",
+  "company_name":"T.L.L.C",
+   "skills":[
+     1,2,3
+     ]
+}
+
+/*create company data*/
+{
+   "company_name":"Qoblax",
+   "profile_description":"Backend Developer",
+   "establishment_date":"2016-1-12",
+   "company_website_url":"Qoblax.com",
+   "company_images":"",
+}
+
+/*create user details data*/
+{
+   "user_type_id":"1",
+   "email":"anupc09@gmail.com",
+   "password":"123456",
+   "date_of_birth":"2018-1-12",
+   "gender":"Male",
+   "contact":"9503476868",
+   "user_image":"",
+}

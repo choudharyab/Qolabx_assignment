@@ -90,4 +90,63 @@ module.exports.companylist=function(req,res)
                    data:err
                })
            })
-}
+};
+
+module.exports.updateCompany = function(req, res){
+   var img1='';
+    if(req.files!==null && req.files!==undefined)
+    {
+         //img1=req.file.filename
+         img1=req.file.filename
+    }else{
+        img1=req.body.img
+    }
+    Company.forge({id: req.params.id})
+    .fetch()
+    .then(function(company){
+        if(company){
+            company.save({
+              company_name:req.body.company_name,
+              profile_description:req.body.profile_description,
+              establishment_date:req.body.establishment_date,
+              company_website_url:req.body.company_website_url,
+              company_images:img1
+            })
+            .then(function(company){
+                res.json({
+                    type: true,
+                    data: company
+                });
+            });
+        }else{
+            res.status(404).json({
+                type: false,
+                error: 'company having id ' + req.params.id +' does not exist'
+            });
+        }
+    })    
+    .catch(function(err){
+        console.log(err.stack);
+        res.status(400).json({error: err.message});
+    });
+};
+
+module.exports.deleteCompany = function(req, res){
+    Company.forge({id: req.params.id})
+    .fetch()
+    .then(function(company){
+        if(company){
+            company.destroy();
+            res.json(company);
+        }else{
+            res.json({
+                type: false,
+                error: 'company having id ' + req.params.id +' does not exist'
+            });
+        }
+    })
+    .catch(function(err){
+        console.log(err.stack);
+        res.status(400).json({error: err.message});
+    });
+};

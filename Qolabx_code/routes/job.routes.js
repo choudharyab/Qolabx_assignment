@@ -7,7 +7,6 @@ router.post('/create_job',jobController.createjob);
 
 router.get('/alljob',jobController.listjob);
 
-
 router.get('/deletepost/:id',jobController.deletepost);
 
 

@@ -62,6 +62,41 @@ module.exports.adduserccount= function(req, res){
 }) 
 };
 
+module.exports.updateUser = function(req, res){
+    userAccount.forge({id: req.params.id})
+    .fetch()
+    .then(function(user){
+        if(user){
+            user.save({
+        user_type_id:data.user_type_id,
+        email:data.email,
+        password:data.password,
+        date_of_birth:data.date_of_birth,
+        gender:data.gender,
+        is_active:"active",
+        contact:data.contact,
+        user_image:req.file.filename 
+            })
+            .then(function(updatedUser){
+                  
+                res.json({
+                    type:true,
+                    data:updatedUser
+                });
+            });
+        }else{
+            res.json({
+                type: false,
+                error: 'User having id ' + req.params.id +' does not exist'
+            });
+        }
+    })    
+    .catch(function(err){
+        console.log(err.stack);
+        res.status(400).json({error: err.message});
+    });
+};
+
 module.exports.applyjob=function(req,res)
 {
     var data=req.body;
@@ -153,7 +188,7 @@ var storage = multer.diskStorage({
      limits: {fileSize: 2000000},
      fileFilter: function(req, file, callback){
          checkFileType1(file, callback);
-        //copy();
+        
      }
  }).any();
  
@@ -192,4 +227,24 @@ module.exports.listUser=function(req,res)
                        data:err
                    })
                })
-}
+};
+
+module.exports.deleteUser = function(req, res){
+    userAccount.forge({id: req.params.id})
+    .fetch()
+    .then(function(user){
+        if(user){
+            user.destroy();
+            res.json(user);
+        }else{
+            res.json({
+                type: false,
+                error: 'User having id ' + req.params.id +' does not exist'
+            });
+        }
+    })
+    .catch(function(err){
+        console.log(err.stack);
+        res.status(400).json({error: err.message});
+    });
+};

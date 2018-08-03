@@ -11,6 +11,10 @@ router.post('/adduserccount',userController.adduserccount,userController.uploadF
 
 router.get('/listUser',userController.listUser);
 
+router.put('/edit/:id', userController.updateUser);
+
+router.delete('/delete/:id', userController.deleteUser);
+
 
 
 
